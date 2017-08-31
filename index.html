@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <style>
+        .text-delete {
+            text-decoration: line-through;
+        }
+        .text-todo {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="app" style="margin-left: 25%; margin-right: 25%;">
+            <h2 class="text-center">{{ title }}</h2>
+            <ul class="list-group">
+                <li class="list-group-item justify-content-between" v-for="(todo,index) in todos" @click="doneTask(index)"><span :class="todo.done ? 'text-delete text-muted' : 'text-todo'">{{ todo.title}}</span>
+                <span v-on:click="removeTask(index)" class="close">&times;</span></li>
+            </ul>
+            <hr>
+            <form v-on:submit="addTask">
+                <input v-model="newTask" type="text" class="form-control" placeholder="Введите новую задачу">
+            </form>
+            <br>
+            <pre class="card card-header">{{ $data | json}}</pre>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="main.js"></script>
+</body>
+</html>
